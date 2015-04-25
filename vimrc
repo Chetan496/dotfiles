@@ -66,6 +66,8 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()
 
@@ -238,10 +240,6 @@ autocmd BufWritePre *.rb normal gg=VG
 
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
-"call pathogen#infect()
-"call pathogen#helptags()
-
-
 
 " Returns true if paste mode is enabled
 function! HasPaste()
@@ -263,6 +261,8 @@ let  g:javscript_enable_domhtmlcss=1
 
 
 let g:ycm_global_ycm_extra_conf=".vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+
+let g:vim_markdown_folding_disabled=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'''
 
