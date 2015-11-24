@@ -1,6 +1,6 @@
 ## DotFiles 
 
-This github repository contains a few dotfiles like .bash_profile and .vimrc.
+This github repository contains a few dotfiles like .bash_profile and .vimrc and .emacs(for both Linux and Windows)
 The aim of this git repository is to store the common dotfile configurations so that configuring on another computer takes a little time.
 
 ### Instructions
