@@ -47,9 +47,9 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'mattn/emmet-vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'vim-scripts/Tagbar'
-Plugin 'vim-scripts/c.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
 Plugin 'othree/html5.vim'
 Plugin 'othree/html5-syntax.vim'
 Plugin 'vim-ruby/vim-ruby'
@@ -68,6 +68,7 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'marijnh/tern_for_vim'
 
 call vundle#end()
 
@@ -258,9 +259,6 @@ autocmd FileType ruby compiler ruby
 
 "vim-javscript settings
 let  g:javscript_enable_domhtmlcss=1
-
-
-let g:ycm_global_ycm_extra_conf=".vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 
 let g:vim_markdown_folding_disabled=1
 
