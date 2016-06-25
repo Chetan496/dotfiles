@@ -19,3 +19,7 @@ Vundle will then install all the plugins listed in the .vimrc.
 This may take sometime.
 
 
+### About .bashrc
+.bashrc has some aliases set.
+I have set aliases which can mount an archive and open it in pcmanfm quickly.
+This will avoid typing long repetitive commands.
