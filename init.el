@@ -34,7 +34,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (treemacs project paredit go-mode zenburn-theme))))
+ '(package-selected-packages
+   (quote
+    (flycheck flycheck-cfn cfn-mode magit treemacs project paredit go-mode zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -53,6 +55,8 @@
  (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
  (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
+;;enable cfn lint
 
-
-
+(flycheck-cfn-setup)
+(add-hook 'cfn-mode-hook 'flycheck-mode)
+(setq flycheck-highlighting-mode 'line)
