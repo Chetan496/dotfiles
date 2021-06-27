@@ -26,6 +26,9 @@
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
+;;follow symbolic links
+(setq vc-follow-symlinks t)
+
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -36,7 +39,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (flycheck flycheck-cfn cfn-mode magit treemacs project paredit go-mode zenburn-theme))))
+    (material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs project paredit go-mode zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -44,7 +47,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(load-theme 'zenburn t)
+(load-theme 'material t)
 
 ;; paredit config
  (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -60,3 +63,16 @@
 (flycheck-cfn-setup)
 (add-hook 'cfn-mode-hook 'flycheck-mode)
 (setq flycheck-highlighting-mode 'line)
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+
+
+;; custom keys and functions
+(defun openinitfile ()
+  "Function to open the user init file."
+   (interactive)
+   (find-file user-init-file) )
+
+(global-set-key (kbd "C-<f8>") 'treemacs) ;key to toggle treemacs
+(global-set-key (kbd "C-<f6>") 'openinitfile) ;;key to open init file
+(global-set-key (kbd "C-<f7>") 'ansi-term );start ansi term
