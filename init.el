@@ -35,7 +35,7 @@
           word-wrap nil
 	  visual-line-mode t)))
 
-(setq toggle-frame-maximized t)
+
 
 ;; symbolic links
 (setq vc-follow-symlinks t)
@@ -50,7 +50,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (treemacs-projectile projectile material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode zenburn-theme))))
+    (cyberpunk-theme vscdark-theme tron-legacy-theme treemacs-icons-dired treemacs-all-the-icons kaolin-themes afternoon-theme darkokai-theme abyss-theme treemacs-projectile projectile material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -61,8 +61,8 @@
 (setq user-full-name    "Chetan Yewale"
       user-mail-address "yewalechetan@gmail.com")
 
-
-(load-theme 'material t)
+(add-hook 'after-init-hook 
+	  (lambda () (load-theme 'cyberpunk t)))
 
 ;; paredit config
 (autoload 'enable-paredit-mode "paredit" t)
@@ -105,3 +105,4 @@
 
 ;;if frame is closed, then automatically save the session
 (add-to-list 'delete-frame-functions #'desktop-save)
+
