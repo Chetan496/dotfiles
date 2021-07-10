@@ -50,7 +50,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (cyberpunk-theme vscdark-theme tron-legacy-theme treemacs-icons-dired treemacs-all-the-icons kaolin-themes afternoon-theme darkokai-theme abyss-theme treemacs-projectile projectile material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode zenburn-theme))))
+    (grandshell-theme clues-theme cherry-blossom-theme distinguished-theme color-theme-sanityinc-tomorrow alect-themes cyberpunk-theme tron-legacy-theme treemacs-icons-dired treemacs-all-the-icons afternoon-theme abyss-theme treemacs-projectile projectile material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -62,7 +62,10 @@
       user-mail-address "yewalechetan@gmail.com")
 
 (add-hook 'after-init-hook 
-	  (lambda () (load-theme 'cyberpunk t)))
+	  (lambda ()
+	    (load-theme 'distinguished t)
+	    ))
+
 
 ;; paredit config
 (autoload 'enable-paredit-mode "paredit" t)
