@@ -18,15 +18,26 @@
 (set-face-attribute 'default nil :height 160)
 
 ;; set cursor type
-(setq cursor-type '(bar . 2))
+(setq cursor-type '(bar . 1))
 
 ;;hide toolbar
 (tool-bar-mode -1)
 
+;;word wrap settings text mode
+(add-hook 'text-mode-hook '(lambda ()
+    (setq truncate-lines nil
+          word-wrap t
+	  visual-line-mode t)))
 
-(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+;;word wrap settings prog mode
+(add-hook 'prog-mode-hook '(lambda ()
+    (setq truncate-lines t
+          word-wrap nil
+	  visual-line-mode t)))
 
-;;follow symbolic links
+(setq toggle-frame-maximized t)
+
+;; symbolic links
 (setq vc-follow-symlinks t)
 
 (require 'package)
@@ -39,7 +50,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs project paredit go-mode zenburn-theme))))
+    (treemacs-projectile projectile material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -47,16 +58,20 @@
  ;; If there is more than one, they won't work right.
  )
 
+(setq user-full-name    "Chetan Yewale"
+      user-mail-address "yewalechetan@gmail.com")
+
+
 (load-theme 'material t)
 
 ;; paredit config
- (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
- (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
- (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
- (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
- (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
- (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
- (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+(autoload 'enable-paredit-mode "paredit" t)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
 ;;enable cfn lint
 
@@ -76,3 +91,17 @@
 (global-set-key (kbd "C-<f8>") 'treemacs) ;key to toggle treemacs
 (global-set-key (kbd "C-<f6>") 'openinitfile) ;;key to open init file
 (global-set-key (kbd "C-<f7>") 'ansi-term );start ansi term
+
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(setq projectile-project-search-path '("~/Monument_src/"  "~/personal_projects/"))
+(treemacs) ;launch treemacs at start
+
+
+(desktop-save-mode)
+;; automatically load previous session on startup
+;;(desktop-read)
+
+;;if frame is closed, then automatically save the session
+(add-to-list 'delete-frame-functions #'desktop-save)
