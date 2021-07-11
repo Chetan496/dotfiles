@@ -50,7 +50,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (origami treemacs-magit ivy-rich counsel swiper ivy json-mode grandshell-theme cherry-blossom-theme distinguished-theme alect-themes cyberpunk-theme tron-legacy-theme treemacs-icons-dired treemacs-all-the-icons afternoon-theme treemacs-projectile projectile project material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode))))
+    (origami treemacs-magit ivy-rich counsel swiper ivy json-mode grandshell-theme cherry-blossom-theme distinguished-theme cyberpunk-theme tron-legacy-theme treemacs-icons-dired treemacs-all-the-icons afternoon-theme treemacs-projectile projectile project material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
