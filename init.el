@@ -107,8 +107,9 @@
 
 
 (use-package treemacs
-   :after projectile
-   :bind ( ("C-<f8>" . treemacs) )
+  :after projectile
+  :custom (setq treemacs-recenter-after-file-follow always)
+  :bind ( ("C-<f8>" . treemacs) )
   )
 
 (desktop-save-mode)
