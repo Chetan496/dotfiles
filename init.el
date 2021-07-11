@@ -14,6 +14,10 @@
 
 
 (global-linum-mode t)
+(column-number-mode 1)
+(global-hl-line-mode 1)
+(global-visual-line-mode 1)
+
 
 ;;so that you can see matching params
 (show-paren-mode 1)
@@ -167,6 +171,12 @@
 
 (global-set-key (kbd "C-S-i") 'my-json-prettify)  ;;Ctrl+Shift+i for json prettify
 
+
+;;kill other buffers
+(defun kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 
 ;;; ivy config
 (use-package counsel
