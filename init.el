@@ -50,7 +50,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (origami treemacs-magit ivy-rich counsel swiper ivy json-mode grandshell-theme cherry-blossom-theme distinguished-theme cyberpunk-theme tron-legacy-theme treemacs-icons-dired treemacs-all-the-icons afternoon-theme treemacs-projectile projectile project material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode))))
+    (elpy pylint origami treemacs-magit ivy-rich counsel swiper ivy json-mode grandshell-theme cherry-blossom-theme distinguished-theme cyberpunk-theme tron-legacy-theme treemacs-icons-dired treemacs-all-the-icons afternoon-theme treemacs-projectile projectile project material-theme flycheck flycheck-cfn cfn-mode magit treemacs go-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -82,9 +82,14 @@
 (flycheck-cfn-setup)
 (add-hook 'cfn-mode-hook 'flycheck-mode)
 (setq flycheck-highlighting-mode 'line)
-(with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
 
+(use-package elpy
+  :ensure t
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
+
+(setq elpy-rpc-python-command "python3")
 
 ;; custom keys and functions
 (defun openinitfile ()
