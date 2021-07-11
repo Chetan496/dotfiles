@@ -92,7 +92,6 @@
    (interactive)
    (find-file user-init-file) )
 
-;;(global-set-key (kbd "C-<f8>") 'treemacs) ;key to toggle treemacs
 (global-set-key (kbd "C-<f6>") 'openinitfile) ;;key to open init file
 (global-set-key (kbd "C-<f7>") 'ansi-term );start ansi term
 
@@ -114,6 +113,7 @@
 
 (setq keyboard-type "standard")
 
+;; for code folding
 (use-package origami
   :config (origami-mode)
   :bind ( ("M-[" . origami-close-node)
