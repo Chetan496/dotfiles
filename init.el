@@ -50,7 +50,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (treemacs-magit ivy-rich counsel swiper ivy yafolding json-mode grandshell-theme cherry-blossom-theme distinguished-theme alect-themes cyberpunk-theme tron-legacy-theme treemacs-icons-dired treemacs-all-the-icons afternoon-theme treemacs-projectile projectile project material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode zenburn-theme))))
+    (origami treemacs-magit ivy-rich counsel swiper ivy json-mode grandshell-theme cherry-blossom-theme distinguished-theme alect-themes cyberpunk-theme tron-legacy-theme treemacs-icons-dired treemacs-all-the-icons afternoon-theme treemacs-projectile projectile project material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -112,6 +112,20 @@
   :bind ( ("C-<f8>" . treemacs) )
   )
 
+(setq keyboard-type "standard")
+
+(use-package origami
+  :config (origami-mode)
+  :bind ( ("M-[" . origami-close-node)
+          ("M-s-[" . origami-close-all-nodes)  ;; s is for the windows key
+          ("M-]" . origami-open-node )
+          ("M-s-]" . origami-open-all-nodes )
+           )
+  )
+
+;; enable origami mode globally to enable code folding
+(global-origami-mode)
+
 (desktop-save-mode)
 ;; automatically load previous session on startup
 ;;(desktop-read)
@@ -137,8 +151,19 @@
 (global-set-key ">" 'my-indent-region)
 (global-set-key "<" 'my-unindent-region)
 
-;;; ivy config
 
+;; keys for json prettifying currently selected region
+(defun my-json-prettify(N)
+  (interactive "p")
+  (if (use-region-p)
+      (json-pretty-print (region-beginning) (region-end) )
+
+   ))
+
+(global-set-key (kbd "C-S-i") 'my-json-prettify)  ;;Ctrl+Shift+i for json prettify
+
+
+;;; ivy config
 (use-package counsel
   :after ivy
   :config (counsel-mode)
