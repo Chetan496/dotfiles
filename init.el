@@ -35,6 +35,7 @@
 (save-place-mode 1)
 
 ;;word wrap settings
+(setq word-wrap t)
 (setq visual-line-mode t)
 
 ;;; Prevent Extraneous Tabs
@@ -49,7 +50,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yafolding json-mode grandshell-theme cherry-blossom-theme distinguished-theme alect-themes cyberpunk-theme tron-legacy-theme treemacs-icons-dired treemacs-all-the-icons afternoon-theme treemacs-projectile projectile project material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode zenburn-theme))))
+    (treemacs-magit ivy-rich counsel swiper ivy yafolding json-mode grandshell-theme cherry-blossom-theme distinguished-theme alect-themes cyberpunk-theme tron-legacy-theme treemacs-icons-dired treemacs-all-the-icons afternoon-theme treemacs-projectile projectile project material-theme flycheck-pycheckers flycheck flycheck-cfn cfn-mode magit treemacs go-mode zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -63,6 +64,7 @@
 (add-hook 'after-init-hook 
 	  (lambda ()
 	    (load-theme 'distinguished t)
+            (treemacs)
 	    ))
 
 
@@ -90,16 +92,24 @@
    (interactive)
    (find-file user-init-file) )
 
-(global-set-key (kbd "C-<f8>") 'treemacs) ;key to toggle treemacs
+;;(global-set-key (kbd "C-<f8>") 'treemacs) ;key to toggle treemacs
 (global-set-key (kbd "C-<f6>") 'openinitfile) ;;key to open init file
 (global-set-key (kbd "C-<f7>") 'ansi-term );start ansi term
 
-(projectile-mode +1)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(use-package projectile
+  :config (projectile-mode)
+  :custom (
+           (setq projectile-project-search-path '("~/Monument_src/"  "~/personal_projects/")))
+  :bind (
+         ("C-c p" . projectile-command-map )
 
-(setq projectile-project-search-path '("~/Monument_src/"  "~/personal_projects/"))
-(treemacs) ;launch treemacs at start
+         ) )
 
+
+(use-package treemacs
+   :after projectile
+   :bind ( ("C-<f8>" . treemacs) )
+  )
 
 (desktop-save-mode)
 ;; automatically load previous session on startup
@@ -126,12 +136,36 @@
 (global-set-key ">" 'my-indent-region)
 (global-set-key "<" 'my-unindent-region)
 
+;;; ivy config
 
-;;; copied from better defaults
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
+(use-package counsel
+  :after ivy
+  :config (counsel-mode)
+  :bind ( ("M-x" . counsel-M-x)
+          ("C-x C-f" . counsel-find-file )
+          ("<f1> f" . counsel-describe-function )
+          ("<f1> v" . counsel-describe-variable)
+          ("<f1> o" . counsel-describe-symbol )
+          ("<f1> l" . counsel-find-library)
+          ("C-y" . counsel-yank-pop)
+          ("C-x b" . counsel-switch-buffer)) 
+  )
+  
+(use-package ivy
+  :defer 0.1
+  :diminish
+  :bind (("C-c C-r" . ivy-resume)
+         ("C-x B" . ivy-switch-buffer-other-window))
+  :custom
+  (ivy-count-format "(%d/%d) ")
+  (ivy-use-virtual-buffers t)
+  :config (ivy-mode))
+
+
+(use-package swiper
+  :after ivy
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)))
 
 (provide 'init)
 ;;; init.el ends here
