@@ -17,8 +17,6 @@
 (column-number-mode 1)
 (global-hl-line-mode 1)
 (global-visual-line-mode 1)
-(global-prettify-symbols-mode 1)
-(setq prettify-symbols-unprettify-at-point t)
 
 ;;so that you can see matching params
 (show-paren-mode 1)
