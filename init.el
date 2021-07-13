@@ -117,7 +117,27 @@
   :after projectile
   :custom (setq treemacs-recenter-after-file-follow always)
   :bind ( ("C-<f8>" . treemacs) )
+  :config
+  (progn           
+             (setq treemacs-follow-mode t)
+             (setq treemacs-file-watch-mode t)
+             (setq treemacs-fringe-indicator-mode 'always)  
+           )
   )
+
+(use-package treemacs-projectile
+  :after (treemacs projectile)
+  :ensure t)
+
+(use-package treemacs-icons-dired
+  :after (treemacs dired)
+  :ensure t
+  :config (treemacs-icons-dired-mode))
+
+(use-package treemacs-magit
+  :after (treemacs magit)
+  :ensure t)
+
 
 (setq keyboard-type "standard")
 
